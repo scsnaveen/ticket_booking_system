@@ -17,10 +17,15 @@
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%if user_signed_in?%>
+
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
+          <%else%>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <%= link_to "Sign up",new_user_registration_path,class: "dropdown-item"%> 
+          <%= link_to "Sign in",new_user_session_path,class: "dropdown-item"%>
+          <%end%>
         </div>
       </li>
       <li class="nav-item">

@@ -1,0 +1,15 @@
+<div class="container" style="background-image: url(https://www.bitlasoft.com/wp-content/uploads/sites/4/2020/09/pic-1.png);">
+	<%= search_form_for @q do |f| %>
+
+		<div class="form-group mx-sm-3 mb-2">
+
+			<%= f.search_field :starting_point_cont,class:"field ",placeholder:"From" %>
+
+			<%= f.search_field :destination_point_cont,class:"field",placeholder:"To" %>
+
+			<%= f.submit "search",class:"btn btn-secondary"%>
+
+		</div>
+
+	<% end %>
+</div>

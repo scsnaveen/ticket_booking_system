@@ -1,10 +1,14 @@
 class BusesController < ApplicationController
+	# before_action :set_points, only: [:index]
 	def index
-		@buses =Bus.all
+		@q = Bus.ransack(params[:q])
+		@buses = @q.result(distinct: true)
 	end
+
 	def new
 		@bus = Bus.new
 	end
+
 	def create
 		@bus =Bus.new(bus_params)
 		if @bus.save
@@ -14,7 +18,20 @@ class BusesController < ApplicationController
 		end
 	end
 
-	private
+	def show
+		@bus = Bus.find(params[:id])
+	end
+	# def set_points
+	# 	@start = params[:starting_point].present?
+	# 	@end = params[:destination_point].present?
+	# 	if !@start && !@end
+	# 		flash[:alert] = "please select start and destination point"
+	# 		redirect_to root_path 
+	# 	else
+	# 		render :index
+	# 	end
+	# end
+
 	def bus_params
 		params.permit(:serial_no,:starting_point,:destination_point,:capacity,:reserved,:available)
 	end

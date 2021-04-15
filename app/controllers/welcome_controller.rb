@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
-  def index
-  end
+	def index
+		@q = Bus.ransack(params[:q])
+		@buses = @q.result(distinct: true)
+	end
 end

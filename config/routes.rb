@@ -5,7 +5,13 @@ Rails.application.routes.draw do
 	}
   get 'welcome/index'
   root 'welcome#index'
-  get 'buses/new'
-  post 'buses/create' 
+  # get 'buses/new'
+  # post 'buses/create'
+  # get 'buses/index' 
+  resources :buses do
+    collection do
+      match 'search' => 'buses#search', via: [:get, :post], as: :search
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

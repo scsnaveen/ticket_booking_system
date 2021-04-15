@@ -1,0 +1,36 @@
+<div class="container">
+<br>
+<br> 
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">serial no</th>
+			<th scope="col">starting point</th>
+			<th scope="col">destination</th>
+			<th scope="col">capacity</th>
+			<th scope="col">reserved</th>
+			<th scope="col">available</th>
+		</tr>
+	</thead>
+	<tbody>
+		<div class="card-group">
+		<% @buses.each do |bus|%>
+		<div class="card">
+			<tr>
+				<div class="card">
+				<td><%= bus.serial_no%></td>
+				<td><%= bus.starting_point%></td>
+				<td><%= bus.destination_point%></td>
+				<td><%= bus.capacity%></td>
+				<td><%= bus.reserved%></td>
+				<td><%= bus.available%></td>
+				<!-- <td><%# link_to "reserve",reservation_create_path,class:"btn btn-primary"%><td> -->
+				</div>
+			</tr>
+		</div>
+		<%end%>
+	</div>
+	</tbody>
+</table>
+</div>
+

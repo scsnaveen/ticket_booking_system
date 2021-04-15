@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(sign_up_params)
     if @user.save
+      Wallet.create :user_id => @user.id
       redirect_to new_user_session_path
     else
       render 'new'
