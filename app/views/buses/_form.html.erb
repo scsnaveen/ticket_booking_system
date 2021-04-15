@@ -1,0 +1,23 @@
+<%= form_with(url: buses_create_path, method: "post") do |form| %>
+
+<div class="field form-group">
+    <%= form.text_field :serial_no,class:"form-control",placeholder:"serial no" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :starting_point,class:"form-control",placeholder:"starting point" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :destination_point,class:"form-control",placeholder:"destination point" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.number_field :capacity,class:"form-control",placeholder:"capacity" %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit class:"btn btn-secondary"%>
+  </div>
+<%end%>
