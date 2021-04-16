@@ -1,0 +1,5 @@
+<%=form_with(url: payments_create_path(:id=>@reservation.id), method: "post") do |form|%>
+<p>Amount:
+<%= @reservation.amount%></p>
+<%= form.submit "pay"%>
+<%end%>

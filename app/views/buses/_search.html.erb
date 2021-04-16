@@ -1,15 +1,57 @@
-<div class="container" style="background-image: url(https://www.bitlasoft.com/wp-content/uploads/sites/4/2020/09/pic-1.png);">
+<div  class="container">
+<div  style="background-image: url(https://www.bitlasoft.com/wp-content/uploads/sites/4/2020/09/pic-1.png) " >
 	<%= search_form_for @q do |f| %>
+	<form>
+	
+		<div class="row">
+			<div class="col">
+				<%= f.search_field :starting_point_cont,class:"field form-control",placeholder:"From",id: "search_field1" %>
+			</div>
 
-		<div class="form-group mx-sm-3 mb-2">
-
-			<%= f.search_field :starting_point_cont,class:"field ",placeholder:"From" %>
-
-			<%= f.search_field :destination_point_cont,class:"field",placeholder:"To" %>
-
-			<%= f.submit "search",class:"btn btn-secondary"%>
-
+			<div class="col">
+				<%= f.search_field :destination_point_cont,class:"field form-control",placeholder:"To" ,id:"search_field2"%>
+			</div>
+			<div class="col">
+				<%= f.datetime_field :travel_date,class:"field form-control",placeholder:"Date" %>
+			</div>
+			<div class="col">
+				<%= f.submit "search",class: "btn btn-primary"%>
+			</div>
 		</div>
-
+	</form>
 	<% end %>
 </div>
+</div>
+<style type="text/css">
+.container{
+ position relative;
+}
+.form{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+}
+</style>
+<!-- <script type="text/javascript">
+$(document).submit(function() {
+
+	  $.ajax({    
+		type: "GET",
+		url: "buses/search",
+		dataType: "json",
+		data: { 
+		"starting_point": $("#search_field1").val(),
+		"destination_point": $("#search_field2").val()
+		 },
+		success: function(response){ 
+			var obj = JSON.stringify(response);
+		 $("#result").html(obj)     
+		},
+		error: function(response){
+			alert("please select correct regions");
+		}
+
+	});
+});
+</script> -->

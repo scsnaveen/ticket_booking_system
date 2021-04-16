@@ -1,0 +1,15 @@
+<%=form_with(url: reservations_create_path(:id=>@bus.id), method: "post") do |form|%>
+<div class="container">
+<form>
+<div class="row">
+    <div class="col">
+    	<%= @bus.travel_date%>
+</div>
+    <div class="col">
+<%=form.number_field :seats,placeholder:"seats",class: "form-control"%>
+</div>
+<%=form.submit %>
+</div>
+</form>
+</div>
+<%end%>

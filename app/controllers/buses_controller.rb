@@ -11,6 +11,8 @@ class BusesController < ApplicationController
 
 	def create
 		@bus =Bus.new(bus_params)
+		@bus.available = params[:capacity]
+		@bus.reserved =0
 		if @bus.save
 			redirect_to buses_new_path,notice:"successfully created"
 		else
@@ -33,6 +35,6 @@ class BusesController < ApplicationController
 	# end
 
 	def bus_params
-		params.permit(:serial_no,:starting_point,:destination_point,:capacity,:reserved,:available)
+		params.permit(:serial_no,:starting_point,:destination_point,:capacity,:reserved,:available,:fare,:travel_date)
 	end
 end

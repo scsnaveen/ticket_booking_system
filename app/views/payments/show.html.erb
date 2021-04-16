@@ -1,0 +1,28 @@
+<div class="container-fluid" >
+<h1>Payment Details</h1>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Amount</th>
+			<th>Reference code</th>
+			<th>User</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%=  @payment.amount.to_f %></td>
+			<%name1 = User.where(id: @payment.user_id).first.first_name%>
+			<td><%=  @payment.payment_reference %></td>
+			<td><%=  name1 %></td>
+			<td><%=@payment.status%></td>
+			<td><%if @payment.status == "paid"%>
+				<%= button_to "Refund",payments_refund_path(:id=>@payment.id),data: { confirm: "Are you sure?" }  %>
+			<%end%></td>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+</div>
+

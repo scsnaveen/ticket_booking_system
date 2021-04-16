@@ -59,3 +59,4 @@ gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails', '~> 4.3'
 gem "font-awesome-rails"
  gem 'ransack'
+gem 'bootstrap-datepicker-rails'

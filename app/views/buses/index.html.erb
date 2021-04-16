@@ -1,15 +1,18 @@
 <div class="container">
 <br>
-<br> 
+<br>
+<%if @buses.present?%> 
 <table class="table">
 	<thead class="thead-dark">
 		<tr>
-			<th scope="col">serial no</th>
-			<th scope="col">starting point</th>
-			<th scope="col">destination</th>
-			<th scope="col">capacity</th>
-			<th scope="col">reserved</th>
-			<th scope="col">available</th>
+			<th>serial no</th>
+			<th>starting point</th>
+			<th>destination</th>
+			<th>capacity</th>
+			<th>reserved</th>
+			<th>available</th>
+			<th>fare</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,7 +27,8 @@
 				<td><%= bus.capacity%></td>
 				<td><%= bus.reserved%></td>
 				<td><%= bus.available%></td>
-				<!-- <td><%# link_to "reserve",reservation_create_path,class:"btn btn-primary"%><td> -->
+				<td><%= bus.fare%></td>
+				<td><%= link_to "reserve",reservations_new_path(:id=>bus.id),class:"btn btn-primary" %></td>
 				</div>
 			</tr>
 		</div>
@@ -32,5 +36,8 @@
 	</div>
 	</tbody>
 </table>
+<%else%>
+<h3>Sorry!this stop services are not provided</h3>
+<%end%>
 </div>
 
