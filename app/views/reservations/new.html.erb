@@ -1,15 +1,23 @@
-<%=form_with(url: reservations_create_path(:id=>@bus.id), method: "post") do |form|%>
-<div class="container">
+<div>
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-secondary text-white" style="height:50vh;"> 
+<div class="container-fluid">
+	<%=form_with(url: reservations_create_path(:id=>@bus.id), method: "post") do |form|%>
 <form>
-<div class="row">
-    <div class="col">
-    	<%= @bus.travel_date%>
+<div class="row  justify-content-center align-items-center d-flex text-center ">
+<div class="col-6">
+	<h5>Please select number  of seats</h5>
 </div>
+   
+    <div class="row  justify-content-center align-items-center d-flex text-center ">
     <div class="col">
-<%=form.number_field :seats,placeholder:"seats",class: "form-control"%>
+<%=form.number_field :seats,placeholder:"seats",class: "form-control",min: "1"%>
 </div>
-<%=form.submit %>
+</div>
+<%=form.submit "Proceed to Pay",class:"btn btn-success" %>
+
+<%end%>
 </div>
 </form>
 </div>
-<%end%>
+</section>
+</div>

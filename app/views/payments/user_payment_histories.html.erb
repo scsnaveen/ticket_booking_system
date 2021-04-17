@@ -1,0 +1,32 @@
+<div class="container">
+<% if @payments.present?%>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Amount</th>
+			<th>Reference code</th>
+			<th>User</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@payments.each do |payment|%>
+		<tr>
+			<td><%=  payment.amount.to_f %></td>
+			<%name1 = User.find(payment.user_id).first_name%>
+			<td><%= payment.payment_reference%></td>
+			<td><%=  name1 %></td>
+			<td><%= payment.status%></td>
+			<td><%= link_to "view",payments_show_path(id:payment.id),class: "btn btn-secondary"%></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+<%else%>
+<h2>No previous ticket bookings ,for  new booking <%=link_to "click here",root_path%></h2>
+<%end%>
+</div>
+
+
+

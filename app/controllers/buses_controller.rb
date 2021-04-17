@@ -24,13 +24,13 @@ class BusesController < ApplicationController
 		@bus = Bus.find(params[:id])
 	end
 	# def set_points
-	# 	@start = params[:starting_point].present?
-	# 	@end = params[:destination_point].present?
-	# 	if !@start && !@end
-	# 		flash[:alert] = "please select start and destination point"
-	# 		redirect_to root_path 
-	# 	else
-	# 		render :index
+	# 	@start = params[:starting_point]
+	# 	@end = params[:destination_point]
+	# 	if (Bus.where("starting_point = ? AND destination_point = ?",@start,@end).present?)
+	# 		respond_to do |format|
+	# 			format.html{ render :alert=>"please select correct  regions in the input"}
+	# 			format.json {render :json=>"please select correct regions"}
+	# 		end
 	# 	end
 	# end
 

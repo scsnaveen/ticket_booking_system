@@ -1,5 +1,0 @@
-<%@payments.each do |payment|%>
-<%= payment.payment_reference%>
-<%= payment.amount.to_f%>
-<%link_to "view",payments_show_path(id:payment.id),class: "btn btn-secondary"%>
-<%end%>

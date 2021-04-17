@@ -1,4 +1,4 @@
-<div class="container-fluid" >
+<div class="container" >
 <h1>Payment Details</h1>
 <table class="table table-striped table-hover">
 	<thead>
@@ -7,6 +7,7 @@
 			<th>Reference code</th>
 			<th>User</th>
 			<th>Status</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,9 +17,8 @@
 			<td><%=  @payment.payment_reference %></td>
 			<td><%=  name1 %></td>
 			<td><%=@payment.status%></td>
-			<td><%if @payment.status == "paid"%>
-				<%= button_to "Refund",payments_refund_path(:id=>@payment.id),data: { confirm: "Are you sure?" }  %>
-			<%end%></td>
+			<td>
+				<%= button_to "Cancel",payments_refund_path(:id=>@payment.id),data: { confirm: "Are you sure?" } ,class:"btn btn-danger" %></td>
 		</tr>
 	</tbody>
 </table>

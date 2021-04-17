@@ -12,4 +12,5 @@ class User < ApplicationRecord
    has_many :payments
    has_many :reservations
    has_one :wallet
+   has_many :transaction_histories
 end

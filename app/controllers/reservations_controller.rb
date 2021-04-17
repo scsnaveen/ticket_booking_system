@@ -3,24 +3,23 @@ class ReservationsController < ApplicationController
 	def new
 		@bus =Bus.find(params[:id])
 		@reservation = Reservation.new
+
 	end
 
 	def create
 		@bus = Bus.find(params[:id])
-		if @bus.available == 0
-			flash[:notice] ="Sorry tickets are filled"
-			return
-		else 
-			@reservation = Reservation.new(reservation_params)
-			loop do 
-				@reservation.reservation_number = ( [*("A".."Z")].sample(3).join.to_s + [*(0..9)].sample(4).join.to_s )
-				break @reservation.reservation_number unless Reservation.exists?(reservation_number: @reservation.reservation_number)
-			end
-			@reservation.amount = params[:seats].to_f * @bus.fare.to_f
-			@reservation.bus_id = @bus.id
-			@reservation.save!
-			redirect_to payments_new_path(:id=>@reservation.id)
+		@reservation = Reservation.new(reservation_params)
+		loop do 
+			@reservation.reservation_number = ( [*("A".."Z")].sample(3).join.to_s + [*(0..9)].sample(4).join.to_s )
+			break @reservation.reservation_number unless Reservation.exists?(reservation_number: @reservation.reservation_number)
 		end
+		@reservation.amount = params[:seats].to_f * @bus.fare.to_f
+		@reservation.bus_id = @bus.id
+		if @reservation.save
+			redirect_to payments_new_path(:id=>@reservation.id)
+		else
+			puts @reservation.errors.full_messages.to_sentence.inspect
+			redirect_to reservations_new_path(:id=>@bus.id),alert:@reservation.errors.full_messages.to_sentence		end
 	end
 
 	private

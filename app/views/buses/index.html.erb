@@ -10,17 +10,16 @@
 			<th>destination</th>
 			<th>capacity</th>
 			<th>reserved</th>
-			<th>available</th>
-			<th>fare</th>
+			<th><%=sort_link @q,:available, "Available"%></th>
+			<th><%=sort_link @q,:fare, "Fare"%></th>
+			<th><%=sort_link @q,:travel_date, "Date"%></th>
+			<th>Time</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<div class="card-group">
 		<% @buses.each do |bus|%>
-		<div class="card">
 			<tr>
-				<div class="card">
 				<td><%= bus.serial_no%></td>
 				<td><%= bus.starting_point%></td>
 				<td><%= bus.destination_point%></td>
@@ -28,12 +27,15 @@
 				<td><%= bus.reserved%></td>
 				<td><%= bus.available%></td>
 				<td><%= bus.fare%></td>
-				<td><%= link_to "reserve",reservations_new_path(:id=>bus.id),class:"btn btn-primary" %></td>
-				</div>
+				<td><%= bus.travel_date.strftime("%m/%d/%Y")%></td>
+				<td><%= bus.travel_date.strftime("%I:%M%p")%></td>
+				<td>
+					<%if bus.available != 0%>
+					<%= link_to "Proceed to Book",reservations_new_path(:id=>bus.id),class:"btn btn-primary" %>
+					<%end%>
+				</td>
 			</tr>
-		</div>
 		<%end%>
-	</div>
 	</tbody>
 </table>
 <%else%>

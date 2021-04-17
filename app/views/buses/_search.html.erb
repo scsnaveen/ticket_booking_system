@@ -1,7 +1,9 @@
-<div  class="container">
-<div  style="background-image: url(https://www.bitlasoft.com/wp-content/uploads/sites/4/2020/09/pic-1.png) " >
+<section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover; background-image: url(https://www.bitlasoft.com/wp-content/uploads/sites/4/2020/09/pic-1.png);">
+   <div class="container-fluid">
 	<%= search_form_for @q do |f| %>
 	<form>
+      <div class="row  justify-content-center align-items-center d-flex text-center ">
+
 	
 		<div class="row">
 			<div class="col">
@@ -12,33 +14,25 @@
 				<%= f.search_field :destination_point_cont,class:"field form-control",placeholder:"To" ,id:"search_field2"%>
 			</div>
 			<div class="col">
-				<%= f.datetime_field :travel_date,class:"field form-control",placeholder:"Date" %>
+				<%= f.date_field :travel_date,class:"field form-control",placeholder:"Date", min: Date.today %>
 			</div>
 			<div class="col">
 				<%= f.submit "search",class: "btn btn-primary"%>
 			</div>
 		</div>
+      </div>
+
 	</form>
 	<% end %>
 </div>
-</div>
-<style type="text/css">
-.container{
- position relative;
-}
-.form{
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%,-50%);
-}
-</style>
+    </section>		 
+
 <!-- <script type="text/javascript">
 $(document).submit(function() {
 
-	  $.ajax({    
+		$.ajax({    
 		type: "GET",
-		url: "buses/search",
+		url: "buses/set_points",
 		dataType: "json",
 		data: { 
 		"starting_point": $("#search_field1").val(),
@@ -46,12 +40,11 @@ $(document).submit(function() {
 		 },
 		success: function(response){ 
 			var obj = JSON.stringify(response);
+			alert(obj);
 		 $("#result").html(obj)     
-		},
-		error: function(response){
-			alert("please select correct regions");
 		}
 
 	});
 });
-</script> -->
+</script> 
+ -->
