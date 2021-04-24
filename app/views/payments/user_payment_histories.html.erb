@@ -7,6 +7,7 @@
 			<th>Reference code</th>
 			<th>User</th>
 			<th>Status</th>
+			<th>Cancellation fees</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -18,6 +19,12 @@
 			<td><%= payment.payment_reference%></td>
 			<td><%=  name1 %></td>
 			<td><%= payment.status%></td>
+			<td>
+			<%if payment.status == "refund"%>
+			<% for_charges = Payment.where("payment_reference =? AND status =?",payment.payment_reference,"paid")%>
+				<%= (for_charges.first.amount.to_f - payment.amount.to_f).round(2)%>
+			<%end%>
+			</td>
 			<td><%= link_to "view",payments_show_path(id:payment.id),class: "btn btn-secondary"%></td>
 		</tr>
 		<%end%>

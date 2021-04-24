@@ -97,6 +97,6 @@ class PaymentsController < ApplicationController
 		@payment = Payment.find(params[:id])
 	end
 	def user_payment_histories
-		@payments = current_user.payments.all
+		@payments = current_user.payments.all.order("created_at DESC")
 	end
 end

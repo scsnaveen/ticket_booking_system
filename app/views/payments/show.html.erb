@@ -18,7 +18,16 @@
 			<td><%=  name1 %></td>
 			<td><%=@payment.status%></td>
 			<td>
-				<%= button_to "Cancel",payments_refund_path(:id=>@payment.id),data: { confirm: "Are you sure?" } ,class:"btn btn-danger" %></td>
+				<%if !Payment.where("payment_reference =? AND status =?",@payment.payment_reference,"refund").present?%>
+				<%= button_to "Cancel",payments_refund_path(:id=>@payment.id),data: { confirm: "Are you sure?" } ,class:"btn btn-danger" %>
+				<%end%>
+			</td>
+			<td>
+				<%if @payment.status =="refund"%>
+				<% for_charges = Payment.where("payment_reference =? AND status =?",@payment.payment_reference,"paid")%>
+				<%= (for_charges.first.amount.to_f - @payment.amount.to_f).round(2)%>
+				<%end%>
+			</td>
 		</tr>
 	</tbody>
 </table>
